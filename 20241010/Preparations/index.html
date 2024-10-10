@@ -1,0 +1,269 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Build Your Personal Website (1) - Initial Preparations | Yuxuan's Blog</title><meta name="author" content="Yuxuan Gao"><meta name="copyright" content="Yuxuan Gao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Step 1 : Initial PreparationsIn this guide, we will walk through the first step in creating your personal website—setting up the development environment. This includes installing necessary tools like">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Build Your Personal Website (1) - Initial Preparations">
+<meta property="og:url" content="https://yuxuan-28.github.io/20241010/Preparations/index.html">
+<meta property="og:site_name" content="Yuxuan&#39;s Blog">
+<meta property="og:description" content="Step 1 : Initial PreparationsIn this guide, we will walk through the first step in creating your personal website—setting up the development environment. This includes installing necessary tools like">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://yuxuan-28.github.io/img/chii.jpg">
+<meta property="article:published_time" content="2024-10-10T02:50:26.000Z">
+<meta property="article:modified_time" content="2024-10-10T08:40:18.074Z">
+<meta property="article:author" content="Yuxuan Gao">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Github">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yuxuan-28.github.io/img/chii.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://yuxuan-28.github.io/20241010/Preparations/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        if (name && globalFn[key][name]) return
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Build Your Personal Website (1) - Initial Preparations',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-10-10 16:40:18'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/chii.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">2</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-file"></i><span> Documents</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder"></i><span> Categories</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/top_img.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"></a><a class="nav-page-title" href="/"><span class="site-name">Build Your Personal Website (1) - Initial Preparations</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-file"></i><span> Documents</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder"></i><span> Categories</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Build Your Personal Website (1) - Initial Preparations</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-10-10T02:50:26.000Z" title="Created 2024-10-10 10:50:26">2024-10-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-10-10T08:40:18.074Z" title="Updated 2024-10-10 16:40:18">2024-10-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Build-Your-Personal-Website/">Build Your Personal Website</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Step-1-Initial-Preparations"><a href="#Step-1-Initial-Preparations" class="headerlink" title="Step 1 : Initial Preparations"></a>Step 1 : Initial Preparations</h1><p>In this guide, we will walk through the first step in creating your personal website—setting up the development environment. This includes installing necessary tools like Node.js, Git, and Hexo, a popular static site generator. Let’s get started!</p>
+<h2 id="Environment-Setup"><a href="#Environment-Setup" class="headerlink" title="Environment Setup"></a>Environment Setup</h2><h3 id="Install-Node-js"><a href="#Install-Node-js" class="headerlink" title="Install Node.js"></a>Install Node.js</h3><p>Node.js is a JavaScript runtime that allows you to run JavaScript outside of a browser. It’s essential for managing dependencies and running the Hexo framework.</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://nodejs.org/zh-cn/download/prebuilt-installer">Node.js Download</a></li>
+<li><strong>Version Requirement:</strong> Node.js version 10.13 or higher is required, but it’s recommended to use version 12.0 or above for better performance and compatibility.</li>
+</ul>
+<p>Once Node.js is installed, you can verify the installation by checking the version of both Node.js and npm (Node.js package manager).</p>
+<p>Open your command prompt and type the following commands:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+
+<p>If the commands return version numbers, the installation is successful.<br><img src="/img/preparations/version.png"></p>
+<h3 id="Install-Git"><a href="#Install-Git" class="headerlink" title="Install Git"></a>Install Git</h3><p>Git is a version control system that helps you manage and track changes in your project. It’s commonly used to interact with GitHub and other version control platforms.</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://git-scm.com/downloads">Git Download</a></li>
+<li><a target="_blank" rel="noopener" href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">Git Installation Guide</a></li>
+</ul>
+<p>After installing Git, you can confirm the installation by checking the version number:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br></pre></td></tr></table></figure>
+
+<p>If it shows a version number, Git is installed correctly.</p>
+<p><img src="/img/preparations/gitversion.png"></p>
+<h2 id="Install-Hexo"><a href="#Install-Hexo" class="headerlink" title="Install Hexo"></a>Install Hexo</h2><p><a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> is a fast, simple, and powerful blogging framework that is widely used for building static websites. It helps generate static HTML pages from markdown files.</p>
+<p>To install Hexo, use npm to install the Hexo CLI (Command Line Interface) globally on your system:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+
+<h3 id="Initialize-Your-Hexo-Project"><a href="#Initialize-Your-Hexo-Project" class="headerlink" title="Initialize Your Hexo Project"></a>Initialize Your Hexo Project</h3><p>Once Hexo is installed, you can initialize your project by running the following commands. This will create the necessary folders and configuration files for your Hexo site in the specified directory.</p>
+<ol>
+<li>Run the following command to initialize your Hexo project in the chosen folder:</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init &lt;folder&gt;</span><br></pre></td></tr></table></figure>
+<pre><code>Notice: 
+    if folder doesn&#39;t exist
+        - it will create a new folder with the name you specified
+    if folder already exists
+        - it will initialize in the existing folder, and the folder must be empty.
+</code></pre>
+<ol start="2">
+<li>Navigate into the project folder:</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> &lt;folder&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>Install the required dependencies:</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<p>After this setup, your Hexo environment will be ready, and you can start building and customizing your personal website.</p>
+<p><img src="/img/preparations/init.png"></p>
+<h2 id="Configure-GitHub"><a href="#Configure-GitHub" class="headerlink" title="Configure GitHub"></a>Configure <a target="_blank" rel="noopener" href="https://github.com/">GitHub</a></h2><h3 id="Create-a-GitHub-Repository"><a href="#Create-a-GitHub-Repository" class="headerlink" title="Create a GitHub Repository"></a>Create a GitHub Repository</h3><p>To conveniently deploy our personal website, we will use the service provided by GitHub Pages.<br>First, you need a GitHub account; if you don’t have one, please register using your email.</p>
+<p>Log into your GitHub account and create a new repository. The repository name must be <strong>[your_name.github.io]</strong>.</p>
+<p><img src="/img/preparations/new_repository.png"></p>
+<h3 id="Configure-GitHub-Connection"><a href="#Configure-GitHub-Connection" class="headerlink" title="Configure GitHub Connection"></a>Configure GitHub Connection</h3><p>In order to update our website on GitHub, we need to configure our computer to connect to GitHub. There are two main options for doing this:</p>
+<h4 id="Configure-using-GitHub-Desktop"><a href="#Configure-using-GitHub-Desktop" class="headerlink" title="Configure using GitHub Desktop"></a>Configure using <a target="_blank" rel="noopener" href="https://github.com/apps/desktop">GitHub Desktop</a></h4><p>This method automatically connects your computer to your GitHub account without needing to configure SSH keys manually, saving time but may occur some issues. If failed, please configure using SSH Key.</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://desktop.github.com/download/">Download</a> and install GitHub Desktop.</li>
+<li>Open GitHub Desktop and log in with your GitHub account credentials.</li>
+<li>Once logged in, GitHub Desktop will automatically bind your computer to your GitHub account.</li>
+</ol>
+<h4 id="Configure-using-SSH-Key-recommended"><a href="#Configure-using-SSH-Key-recommended" class="headerlink" title="Configure using SSH Key (recommended)"></a>Configure using SSH Key (recommended)</h4><p>This method requires you to generate an SSH key and add it to your GitHub account. This is the most secure and recommended method.</p>
+<ul>
+<li>For Windows Users:</li>
+</ul>
+<ol>
+<li>Open Git Bash in your user directory(e.g., <code>C:\Users\YourUsername</code>).</li>
+<li>Enter <code>cd ~/.ssh</code>.<ul>
+<li>If you successfully enter the <code>./ssh</code> folder, skip to step 5. Otherwise, the SSH key does not exist, and you should follow the steps to configure it.</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>For Mac Users:</li>
+</ul>
+<ol>
+<li>Open Command Line and enter<br> <code>ls -al ~/.ssh</code>.</li>
+<li>If a .pub file already exists, you can open it directly using the following command:<br> <code>cat ~/.ssh/id_rsa.pub</code>.<br> skip to step 5.</li>
+</ol>
+<ul>
+<li>For All Users:</li>
+</ul>
+<ol start="3">
+<li><p>Configure your global Git username and email:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;your_username&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;your_email&quot;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>Run the following command to generate the SSH key:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C your_email@youremail.com</span><br></pre></td></tr></table></figure>
+<ul>
+<li>When you run the command, it will prompt for the file save path and a password; you can simply press <code>Enter</code> to use the default configuration.</li>
+<li>After execution, it will generate two files, <code>id_rsa</code> and <code>id_rsa.pub</code>, in the <code>.ssh</code> directory (e.g., <code>C:\Users\YourUsername\.ssh</code>).</li>
+<li>If the following content appears, it indicates that the generation was successful.<br><img src="/img/preparations/keygen.png"></li>
+</ul>
+</li>
+<li><p>Open the <code>id_rsa.pub</code> file and copy its contents.</p>
+</li>
+<li><p>Go to your GitHub account, select <code>Settings</code>.</p>
+</li>
+<li><p>In the <code>Settings</code> page, click on <code>SSH and GPG keys</code>.</p>
+</li>
+<li><p>You will see <code>New SSH key</code>; click on it.</p>
+</li>
+<li><p>In the form that appears:</p>
+<ul>
+<li>Choose a name for the <code>Title</code>.</li>
+<li>In the <code>Key</code> text area, paste the content you copied from <code>id_rsa.pub</code>.</li>
+</ul>
+</li>
+<li><p>Finally, click <code>Add SSH key</code> to complete the operation.</p>
+</li>
+</ol>
+<p>   <img src="/img/preparations/add.png"></p>
+<ol start="11">
+<li>Run the following command to test the connection to GitHub:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+If the following content is output, it indicates that the configuration was successful.</li>
+</ol>
+<p><img src="/img/preparations/sshkey.png"></p>
+<ul>
+<li>BTW, if you encounter issues like “Failed to connent xxx after xxx ms” or “connection reset”, it may be caused by the network connection. Please connect your DKU VPN, wait a minute and try again.</li>
+</ul>
+<p><strong>Congratulations! 🎉 Once you’ve completed the steps above, you’re just a few steps away from having your own website.</strong> </p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://yuxuan-28.github.io">Yuxuan Gao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://yuxuan-28.github.io/20241010/Preparations/">https://yuxuan-28.github.io/20241010/Preparations/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Hexo/">Hexo</a><a class="post-meta__tags" href="/tags/Github/">Github</a></div><div class="post-share"><div class="social-share" data-image="/img/chii.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="next-post pull-full" href="/20241008/hello-world/" title="Hello World!"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next</div><div class="next_info">Hello World!</div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info is-center"><div class="avatar-img"><img src="/img/chii.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yuxuan Gao</div><div class="author-info-description">a little blog</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yuxuan-28"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Step-1-Initial-Preparations"><span class="toc-number">1.</span> <span class="toc-text">Step 1 : Initial Preparations</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Environment-Setup"><span class="toc-number">1.1.</span> <span class="toc-text">Environment Setup</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Install-Node-js"><span class="toc-number">1.1.1.</span> <span class="toc-text">Install Node.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Install-Git"><span class="toc-number">1.1.2.</span> <span class="toc-text">Install Git</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Install-Hexo"><span class="toc-number">1.2.</span> <span class="toc-text">Install Hexo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Initialize-Your-Hexo-Project"><span class="toc-number">1.2.1.</span> <span class="toc-text">Initialize Your Hexo Project</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configure-GitHub"><span class="toc-number">1.3.</span> <span class="toc-text">Configure GitHub</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-GitHub-Repository"><span class="toc-number">1.3.1.</span> <span class="toc-text">Create a GitHub Repository</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Configure-GitHub-Connection"><span class="toc-number">1.3.2.</span> <span class="toc-text">Configure GitHub Connection</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Configure-using-GitHub-Desktop"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">Configure using GitHub Desktop</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Configure-using-SSH-Key-recommended"><span class="toc-number">1.3.2.2.</span> <span class="toc-text">Configure using SSH Key (recommended)</span></a></li></ol></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 By Yuxuan Gao</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
